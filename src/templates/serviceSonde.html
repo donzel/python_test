@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+{% assets "js_all" %}
+<script src="{{ ASSET_URL }}"></script>
+<p><h2><center>Gestion de la sonde</center></h2></p>
+
+
+<form method="post" action="actionSonde">
+    <p>
+        <label for="pseudo">Gestion de la sonde :</label>
+        <input type="text" name="new_size"  placeholder="Ex : 1.1.1.1" size="30" maxlength="30" />
+        <input type="submit" name="start" value="start">
+        <input type="submit" name="stop" value="stop">
+        <input type="submit" name="update" value="updates">
+    </p>
+</form>
+
+<p></p>
+<p>Retour au tableau de Bord
+    <input type="button" name="lien1" value="Retour" onclick="self.location.href = '/'" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> </p>
+</p>
+{% endassets %}
+{% endblock %}

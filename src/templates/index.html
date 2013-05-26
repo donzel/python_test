@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+{% assets "js_all" %}
+<script src="{{ ASSET_URL }}"></script>
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+<button onclick="self.location.href = '/'">refresh Gauge</button>
+<p><h2><center>Differenttes Actions</center></h2></p>
+<p>Gestion des adresse IP
+    <input type="button" name="lien1" value="service Adresse IP" onclick="self.location.href = '/serviceIP'" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> </p>
+
+<p>Gestion de la sonde
+    <input type="button" name="lien1" value="Gestion de la sonde " onclick="self.location.href = '/serviceSonde'" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> </p>
+
+{% endassets %}
+{% endblock %}

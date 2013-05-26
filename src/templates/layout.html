@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Highcharts Example</title>
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <SCRIPT language="Javascript">
+
+            var MaVariable = "{{ list_time }}";
+            var MaVariable2 = "{{ list_value  }}";
+            //document.write(MaVariable);
+            MaVariable_3 = new Array();
+            MaVariable_3 = MaVariable2.split(",");
+            var final = "";
+            var array_data_time = MaVariable.split(",");
+
+            //document.write(MaVariable_3 [1]);
+            var valeur = new Float32Array(MaVariable_3.length);
+            var times = new Array(array_data_time.length);
+            for (var i = 0; i < MaVariable_3.length; i++) {
+                var data_time_a = array_data_time [i].replace('[', '');
+                var data = MaVariable_3[i].replace('[', '');
+                var data_time_b = data_time_a.replace(']', '');
+                var data_2 = data.replace(']', '');
+                var data_time_c = data_time_b.replace('&#39;', '');
+                var data3 = data_2.replace('&#39;', '');
+
+                //var data_time_final = data_time_c.substring(1, data_time_c.length - 2);
+                var data_time_final = data_time_c.replace('&#39;', '');
+                times [i] = data_time_final;
+                // valeur final value
+                final = data3.substring(1, data3.length - 2);
+                valeur [i] = parseFloat(final);
+                // Iterates over numeric indexes from 0 to 5, as everyone expects
+                //document.write("<p>" + data_time_final);
+            }
+            //document.write("<p>" + valeur);
+            //document.write("<p>" + times)
+            if (valeur.length > 0) {
+                // do stuff
+
+                $(function() {
+                    $('#container').highcharts({
+                        chart: {
+                            type: 'line',
+                            marginRight: 130,
+                            marginBottom: 25
+                        },
+                        title: {
+                            text: 'temps de reponse',
+                            x: -20 //center
+                        },
+                        subtitle: {
+                            text: 'Source: Capensis Oo',
+                            x: -20
+                        },
+                        xAxis: {
+                            categories: times
+                                    ///categories: ['Jan', 'Feb', 'Mar']
+                                    //categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Time (Sec)'
+                            },
+                            plotLines: [{
+                                    value: 0,
+                                    width: 1,
+                                    color: '#808080'
+                                }]
+                        },
+                        tooltip: {
+                            valueSuffix: 'Sec'
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'top',
+                            x: -10,
+                            y: 100,
+                            borderWidth: 0
+                        },
+                        series: [{
+                                name: 'Value',
+                                data: valeur
+                                        // data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                            }]
+                    });
+                });
+                
+
+            }
+            //for (var obj in MaVariable_3) {
+            //  document.write("help "+obj);
+            //}
+
+            //document.write("\n" +MaVariable2);
+// -->
+
+
+       
+        </SCRIPT>
+    </head
+    <body>
+
+        <script type="text/javascript">
+            var path = document.location.pathname;
+
+
+
+        </script>
+        {% assets "js_all" %}
+        <script src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+
+
+        {% block content %}{% endblock %}
+    </body>
+</html>

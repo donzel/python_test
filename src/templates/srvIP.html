@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+{% assets "js_all" %}
+<script src="{{ ASSET_URL }}"></script>
+<p><h2><center>Service IP Actions</center></h2></p>
+<p>list des adresse IP  </p>
+<SCRIPT language="Javascript">
+
+    buffer_string = "{{ list }}";
+
+    ///alert(typeof buffer_string)
+    MaVariable_3 = buffer_string.split(",");
+    var value = new Array(MaVariable_3.length);
+    for (var i = 0; i < MaVariable_3.length; i++) {
+        var data = MaVariable_3[i].replace('[', '');
+        var data_2 = data.replace(']', '');
+        var data3 = data_2.replace('&#39;', '');
+        final = data3.substring(0, data3.length - 2);
+        value [i] = final;
+        // Iterates over numeric indexes from 0 to 5, as everyone expects
+        //document.write("<p>" + final);
+
+
+    }
+
+    var aTab = value;
+    document.write('<p>Il y a  ' + aTab.length + ' Adesse IP .</p>');
+    for (var iI in aTab)
+    {
+        document.write('<p>Adresse IP  ' + iI + ' = ' + aTab[iI] + '</p>');
+    }
+
+
+</script>
+
+<form method="post" action="addIPadr">
+    <p>
+        <label for="pseudo">Action Adresse IP :</label>
+        <input type="text" name="adrip"  placeholder="Ex : 1.1.1.1" size="30" maxlength="30" />
+        <input type="submit" name="add" value="Ajouter">
+        <input type="submit" name="remove" value="Supprime">
+    </p>
+</form>
+
+<p></p>
+<p>Retour au tableau de Bord
+    <input type="button" name="lien1" value="Retour" onclick="self.location.href = '/'" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> </p>
+</p>
+{% endassets %}
+{% endblock %}
