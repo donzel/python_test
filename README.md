@@ -1,4 +1,4 @@
-test_capensis
+test
 =============
 
 sonde avec serveur flask
